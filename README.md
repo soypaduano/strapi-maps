@@ -1,0 +1,2 @@
+# strapi-maps
+Strapi Maps
