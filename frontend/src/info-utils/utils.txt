@@ -1,0 +1,46 @@
+Capitales Europeas: 
+Amsterdam, Netherlands
+Andorra la Vella, Andorra
+Athens, Greece
+Belgrade, Serbia
+Berlin, Germany
+Bern, Switzerland
+Bratislava, Slovakia
+Brussels, Belgium
+Bucharest, Romania
+Budapest, Hungary
+Chisinau, Moldova
+Copenhagen, Denmark
+Dublin, Ireland
+Helsinki, Finland
+Kyiv, Ukraine
+Lisbon, Portugal
+Ljubljana, Slovenia
+London, United Kingdom
+Luxembourg City, Luxembourg
+Madrid, Spain
+Minsk, Belarus
+Monaco, Monaco
+Moscow, Russia
+Nicosia, Cyprus
+Oslo, Norway
+Paris, France
+Podgorica, Montenegro
+Prague, Czech Republic
+Reykjavik, Iceland
+Riga, Latvia
+Rome, Italy
+San Marino, San Marino
+Sarajevo, Bosnia and Herzegovina
+Skopje, North Macedonia
+Sofia, Bulgaria
+Stockholm, Sweden
+Tallinn, Estonia
+Tirana, Albania
+Vaduz, Liechtenstein
+Valletta, Malta
+Vatican City, Vatican City
+Vienna, Austria
+Vilnius, Lithuania
+Warsaw, Poland
+Zagreb, Croatia

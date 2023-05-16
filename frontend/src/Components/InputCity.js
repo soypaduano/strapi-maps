@@ -36,7 +36,7 @@ const InputCity = (props) => {
           Introduce la ciudad
         </label>
       </div>
-      <h4 className="counter">{correctCity}</h4>
+      <h4 className="counter">{correctCity} ✅</h4>
     </div>
   );
 };

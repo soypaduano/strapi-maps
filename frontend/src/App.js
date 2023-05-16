@@ -1,6 +1,7 @@
 import "./App.css";
 import GoogleMapView from "./Components/Map";
 import InputCity from "./Components/InputCity";
+import createCapitals from "./Pages/Create";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -24,16 +25,20 @@ function App() {
     }
   };
 
+  const handleSetCity = () => {};
+
   useEffect(() => {
     fetch(`http://localhost:1337/api/cities`)
       .then((res) => res.json())
       .then(
         (result) => {
           setCities(result.data);
-          setCurrentCity(
-            result.data[Math.floor(Math.random() * result.data.length)]
-              .attributes
-          );
+          if (result.data.length) {
+            setCurrentCity(
+              result.data[Math.floor(Math.random() * result.data.length)]
+                .attributes
+            );
+          }
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -44,6 +49,12 @@ function App() {
       );
   }, []);
 
+  const handleCreateCities = () => {
+    createCapitals();
+  };
+
+  const handleDeleteCities = () => {};
+
   console.log("Cities!");
   console.log(cities);
   console.log("current city");
@@ -53,8 +64,8 @@ function App() {
     <div className="App">
       <div className="nav-urls">
         <a href="https://google.com">Leaderboard</a>
-        <a href="https://google.com">Subir paises</a>
-        <span>Current city: {currentCity.name}</span>
+        <button onClick={() => handleCreateCities()}>Subir paises</button>
+        <span>Current City: {currentCity.name} </span>
       </div>
 
       <header className="App-header">
