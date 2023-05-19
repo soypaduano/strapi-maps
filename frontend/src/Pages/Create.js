@@ -311,28 +311,31 @@ const data = [
   },
 ];
 
-const createCapitals = () => console.clear();
-data.map((city) => {
-  city.latitude = "" + city.latitude;
-  city.longitude = "" + city.longitude;
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ data: city }),
-  })
-    .then((response) => {
-      console.log(response);
-      return response.json();
+const createCapitals = () => {
+  console.clear();
+  alert("doing tbhis");
+  data.map((city) => {
+    city.latitude = "" + city.latitude;
+    city.longitude = "" + city.longitude;
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ data: city }),
     })
-    .then((result) => {
-      console.log("POST request successful:", result);
-    })
-    .catch((error) => {
-      console.error("Error making POST request:", error);
-    });
-  return true;
-});
+      .then((response) => {
+        console.log(response);
+        return response.json();
+      })
+      .then((result) => {
+        console.log("POST request successful:", result);
+      })
+      .catch((error) => {
+        console.error("Error making POST request:", error);
+      });
+    return true;
+  });
+};
 
 export default createCapitals;

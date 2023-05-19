@@ -10,8 +10,6 @@ const InputCity = (props) => {
       opacity: 1,
       scale: 1,
       y: 0,
-      initial: { opacity: 0, scale: 0.5 },
-      animate: { opacity: 1, scale: 1 },
       transition: {
         duration: 1.5,
         ease: [0, 0.71, 0.2, 1.01],
@@ -25,7 +23,7 @@ const InputCity = (props) => {
     },
     hide: {
       y: -20,
-      scale: 3,
+      scale: 1.5,
       opacity: 0,
     },
   };
@@ -44,31 +42,32 @@ const InputCity = (props) => {
 
   return (
     <div className="input-user">
-      <div class="form__group field">
+      <div className="form__group field">
         <input
           type="input"
-          class="form__field"
+          className="form__field"
           placeholder="Name"
           name="name"
           id="name"
-          autoComplete={false}
+          autoComplete={0}
           value={citySelected}
           list="cities"
           onChange={handleChange}
           onKeyDown={(e) => onKeyPress(e)}
           required
         />
-        <label for="name" class="form__label" autoComplete={false}>
+        <label htmlFor="name" className="form__label" autoComplete={0}>
           Type in the city
         </label>
       </div>
       <div className="counter-div">
         <motion.h4
+          whileHover={{ scale: 1.2, rotate: 360 }}
           className="counter"
           key={correctCity}
           variants={variants}
           animate={"show"}
-          initial="hide"
+          initial={"hide"}
         >
           {correctCity}
         </motion.h4>

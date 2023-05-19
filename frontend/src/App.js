@@ -8,16 +8,22 @@ function App() {
   const [correctCityCounter, setCorrectCityCounter] = useState(0);
   const [currentCity, setCurrentCity] = useState({});
   const [cities, setCities] = useState(null);
+  const [dev, setDev] = useState(true);
+  const [gameOverPanel, setGameOverPanel] = useState(false);
 
   const addCorrectCity = (city) => {
     //Is the same
-    if (city === currentCity.name) {
-      setCorrectCityCounter((old) => old + 1);
+    if (city.toLowerCase() === currentCity.name.toLowerCase()) {
+      const newCities = cities.filter(
+        (item) => item.attributes.name !== currentCity.name
+      );
+      setCities(newCities); //Quitamos la ciudad que acaba de salir
+      setCorrectCityCounter((old) => old + 1); // Ponemos el contador
       setCurrentCity(
         cities[Math.floor(Math.random() * cities.length)].attributes
-      );
+      ); //Asignamos una nueva ciudad
     } else {
-      //Game over?
+      setGameOverPanel(true);
     }
   };
 
@@ -49,19 +55,31 @@ function App() {
     createCapitals();
   };
 
-  const handleDeleteCities = () => {};
+  const renderAllCities = () => {
+    console.log("rendering all cities again");
+    return (
+      <div>
+        <ol>
+          {cities
+            ? cities.map((city) => {
+                return <li>{city.attributes.name}</li>;
+              })
+            : null}
+        </ol>
+      </div>
+    );
+  };
 
-  console.log("Cities!");
   console.log(cities);
-  console.log("current city");
-  console.log(currentCity);
 
   return (
     <div className="App">
       <div className="nav-urls">
         <a href="https://google.com">Leaderboard</a>
-        <button onClick={() => handleCreateCities()}>Subir paises</button>
-        <span>Current City: {currentCity.name} </span>
+        {dev ? (
+          <button onClick={() => handleCreateCities()}>Subir paises</button>
+        ) : null}
+        {dev ? <span>Current City: {currentCity.name} </span> : null}
       </div>
 
       <header className="App-header">
