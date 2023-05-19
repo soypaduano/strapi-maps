@@ -12,15 +12,11 @@ function App() {
   const addCorrectCity = (city) => {
     //Is the same
     if (city === currentCity.name) {
-      alert("correct!");
-      setCorrectCityCounter((old) => {
-        return old + 1;
-      });
+      setCorrectCityCounter((old) => old + 1);
       setCurrentCity(
         cities[Math.floor(Math.random() * cities.length)].attributes
       );
     } else {
-      alert("wrong");
       //Game over?
     }
   };
@@ -69,7 +65,9 @@ function App() {
       </div>
 
       <header className="App-header">
-        <h3>Adivina la ciudad! 🌆 </h3>
+        <div>
+          <h3>Guess the city 🌆 </h3>
+        </div>
       </header>
       <GoogleMapView
         latitude={currentCity.latitude}
