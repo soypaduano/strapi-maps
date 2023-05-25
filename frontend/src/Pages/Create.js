@@ -147,7 +147,7 @@ const data = [
   },
   {
     points: 6,
-    name: "Luxembourg City",
+    name: "Luxembourg",
     country: "Luxembourg",
     latitude: 49.6116,
     longitude: 6.1319,

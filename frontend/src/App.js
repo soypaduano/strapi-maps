@@ -3,12 +3,14 @@ import GoogleMapView from "./Components/Map";
 import InputCity from "./Components/InputCity";
 import createCapitals from "./Pages/Create";
 import { useState, useEffect } from "react";
+import GameOverPanel from "./Components/GameOver";
 
 function App() {
-  const [correctCityCounter, setCorrectCityCounter] = useState(0);
+  const [correctCityCounter, setCorrectCityCounter] = useState([]);
   const [currentCity, setCurrentCity] = useState({});
   const [cities, setCities] = useState(null);
   const [dev, setDev] = useState(true);
+
   const [gameOverPanel, setGameOverPanel] = useState(false);
 
   const addCorrectCity = (city) => {
@@ -18,7 +20,10 @@ function App() {
         (item) => item.attributes.name !== currentCity.name
       );
       setCities(newCities); //Quitamos la ciudad que acaba de salir
-      setCorrectCityCounter((old) => old + 1); // Ponemos el contador
+      setCorrectCityCounter((oldCitiesGuessed) => [
+        ...oldCitiesGuessed,
+        currentCity.name,
+      ]); //Anadimos la ciudad recien acertada
       setCurrentCity(
         cities[Math.floor(Math.random() * cities.length)].attributes
       ); //Asignamos una nueva ciudad
@@ -26,8 +31,6 @@ function App() {
       setGameOverPanel(true);
     }
   };
-
-  const handleSetCity = () => {};
 
   useEffect(() => {
     fetch(`http://localhost:1337/api/cities`)
@@ -55,22 +58,21 @@ function App() {
     createCapitals();
   };
 
-  const renderAllCities = () => {
-    console.log("rendering all cities again");
+  const renderCitiesGuessed = () => {
     return (
       <div>
-        <ol>
-          {cities
-            ? cities.map((city) => {
-                return <li>{city.attributes.name}</li>;
-              })
-            : null}
-        </ol>
+        <ul>
+          {correctCityCounter.map((item) => {
+            return <li>{item}</li>;
+          })}
+        </ul>
       </div>
     );
   };
 
-  console.log(cities);
+  const gameOver = () => {
+    //Restart game
+  };
 
   return (
     <div className="App">
@@ -94,10 +96,21 @@ function App() {
       />
       <>
         <InputCity
-          correctCity={correctCityCounter}
+          correctCity={correctCityCounter.length}
           addCorrectCity={addCorrectCity}
         />
       </>
+
+      <GameOverPanel
+        open={gameOverPanel}
+        handleClose={() => {
+          setGameOverPanel(false);
+        }}
+        correctCityCounter={correctCityCounter}
+        currentCity={currentCity.name}
+      ></GameOverPanel>
+
+      {renderCitiesGuessed()}
       <footer>
         <div>Developed by Padu 2023</div>
       </footer>
