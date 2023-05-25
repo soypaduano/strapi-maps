@@ -7,6 +7,8 @@ import { TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import createMethods from "../Pages/Create";
+import { create } from "@mui/material/styles/createTransitions";
 
 const CssTextField = styled(TextField)({
   "& label": {
@@ -60,8 +62,11 @@ const GameOverPanel = (props) => {
     }
   };
 
-  const submitPlayerName = () => {
-    alert("doing submit to" + playerName);
+  const submitPlayerName = async () => {
+    const result = await createMethods.submitUser(
+      playerName,
+      correctCityCounter.length
+    );
   };
 
   return (
@@ -83,22 +88,10 @@ const GameOverPanel = (props) => {
           <Box className="modal-game-over" sx={style}>
             <Typography id="transition-modal-title" variant="h5" component="h1">
               <b> Wrong! 😨 </b>
-            </Typography>
+            </Typography>{" "}
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              <div
-                style={{
-                  display: "inline-grid",
-                  fontFamily:
-                    "-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif",
-                }}
-              >
-                <div>
-                  The correct city was <b> {currentCity} </b>
-                </div>
-                <div>
-                  You guessed right <b> {correctCityCounter.length} cities </b>
-                </div>
-              </div>
+              The correct city was <b> {currentCity} </b> <br></br>
+              You guessed right <b> {correctCityCounter.length} cities </b>
             </Typography>
             <div>
               {correctCityCounter.length > -1 ? (

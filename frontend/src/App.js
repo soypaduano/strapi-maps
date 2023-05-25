@@ -1,7 +1,8 @@
 import "./App.css";
 import GoogleMapView from "./Components/Map";
 import InputCity from "./Components/InputCity";
-import createCapitals from "./Pages/Create";
+import createMethods from "./Pages/Create";
+import cityUtils from "./info-utils/utils";
 import { useState, useEffect } from "react";
 import GameOverPanel from "./Components/GameOver";
 
@@ -32,23 +33,10 @@ function App() {
   };
 
   const handleCreateCities = () => {
-    createCapitals();
-  };
-
-  const renderCitiesGuessed = () => {
-    return (
-      <div>
-        <ul>
-          {correctCityCounter.map((item) => {
-            return <li>{item}</li>;
-          })}
-        </ul>
-      </div>
-    );
+    createMethods.createCapitals();
   };
 
   const handlePanelClose = () => {
-    setGameOverPanel(false);
     window.location.reload();
   };
 
@@ -57,7 +45,7 @@ function App() {
       .then((res) => res.json())
       .then(
         (result) => {
-          setCities(result.data);
+          setCities(cityUtils.orderCitiesByPopulation(result.data));
           if (result.data.length) {
             setCurrentCity(
               result.data[Math.floor(Math.random() * result.data.length)]
@@ -65,9 +53,6 @@ function App() {
             );
           }
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
         (error) => {
           alert("errror");
         }

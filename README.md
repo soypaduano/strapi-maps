@@ -28,4 +28,4 @@ Game Mechanics:
 - Add notification when post API method is complete
 - Check with UI webpage
 - Replantear el contador de correctas (no me gusta mucho como esta ahi)
-- Show first cities with more than 1Million
+- Redisenar el sistema de juego: ordenar mapas por niveles

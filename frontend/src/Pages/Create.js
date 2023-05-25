@@ -1,5 +1,5 @@
 const urlCreateCities = "http://localhost:1337/api/cities";
-const urlCreateUserLeaderboard = "http://localhost:1337/api/cities";
+const urlCreateUserLeaderboard = "http://localhost:1337/api/leaderboards";
 
 const data = [
   {
@@ -424,7 +424,7 @@ const createCapitals = () => {
     return true;
   });
 };
-const submitUser = (username, streak) => {
+const submitUser = async (username, streak) => {
   const user = { username: username, streak: streak };
   fetch(urlCreateUserLeaderboard, {
     method: "POST",
