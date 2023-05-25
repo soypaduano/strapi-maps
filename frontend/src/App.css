@@ -19,6 +19,15 @@ a {
   margin: 10px;
 }
 
+h3 {
+  margin-bottom: 0;
+}
+
+h6 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
 .App-header {
   display: flex;
   flex-direction: row;
@@ -115,4 +124,12 @@ a {
 .form__field:required,
 .form__field:invalid {
   box-shadow: none;
+}
+
+footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 15px;
+  margin: 10px;
 }

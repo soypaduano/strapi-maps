@@ -1,4 +1,4 @@
-Capitales Europeas: 
+Europea:
 Amsterdam, Netherlands
 Andorra la Vella, Andorra
 Athens, Greece
@@ -44,3 +44,15 @@ Vienna, Austria
 Vilnius, Lithuania
 Warsaw, Poland
 Zagreb, Croatia
+
+South America:
+Bogota, Colombia
+Caracas, Venezuela
+Quito, Ecuador
+Lima, Peru
+Brasilia, Brasil
+Santiago, Chile
+Montevideo, Uruguay
+Buenos Aires, Argentina
+Asuncion, Paraguay
+La Paz, Bolivia 

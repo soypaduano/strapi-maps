@@ -84,7 +84,8 @@ function App() {
 
       <header className="App-header">
         <div>
-          <h3>Guess the city 🌆 </h3>
+          <h3>Which city is this? 🌆 </h3>
+          <h6>You have to guess the city from a bird's eye</h6>
         </div>
       </header>
       <GoogleMapView
@@ -97,6 +98,9 @@ function App() {
           addCorrectCity={addCorrectCity}
         />
       </>
+      <footer>
+        <div>Developed by Padu 2023</div>
+      </footer>
     </div>
   );
 }

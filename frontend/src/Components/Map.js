@@ -1,15 +1,17 @@
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 
 const mapOptions = {
   panControl: false,
-  zoomControl: false,
+  zoomControl: true,
+  minZoom: 10,
+  maxZoom: 15,
   mapTypeControl: false,
   scaleControl: false,
   streetViewControl: false,
   overviewMapControl: false,
   rotateControl: false,
   scrollwheel: false,
-  draggable: false,
+  draggable: true,
   disableDefaultUI: true,
   mapTypeId: "satellite",
 };
@@ -30,7 +32,7 @@ const GoogleMapView = (props) => {
     <div className="map-container">
       <GoogleMap
         id="map"
-        zoom={13}
+        zoom={12}
         mapTypeId="satellite"
         center={coord}
         mapContainerClassName={"map"}
