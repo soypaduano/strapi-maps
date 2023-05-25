@@ -10,7 +10,6 @@ function App() {
   const [currentCity, setCurrentCity] = useState({});
   const [cities, setCities] = useState(null);
   const [dev, setDev] = useState(true);
-
   const [gameOverPanel, setGameOverPanel] = useState(false);
 
   const addCorrectCity = (city) => {
@@ -30,6 +29,27 @@ function App() {
     } else {
       setGameOverPanel(true);
     }
+  };
+
+  const handleCreateCities = () => {
+    createCapitals();
+  };
+
+  const renderCitiesGuessed = () => {
+    return (
+      <div>
+        <ul>
+          {correctCityCounter.map((item) => {
+            return <li>{item}</li>;
+          })}
+        </ul>
+      </div>
+    );
+  };
+
+  const handlePanelClose = () => {
+    setGameOverPanel(false);
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -54,26 +74,6 @@ function App() {
       );
   }, []);
 
-  const handleCreateCities = () => {
-    createCapitals();
-  };
-
-  const renderCitiesGuessed = () => {
-    return (
-      <div>
-        <ul>
-          {correctCityCounter.map((item) => {
-            return <li>{item}</li>;
-          })}
-        </ul>
-      </div>
-    );
-  };
-
-  const gameOver = () => {
-    //Restart game
-  };
-
   return (
     <div className="App">
       <div className="nav-urls">
@@ -87,7 +87,7 @@ function App() {
       <header className="App-header">
         <div>
           <h3>Which city is this? 🌆 </h3>
-          <h6>You have to guess the city from a bird's eye</h6>
+          <h6>Guess the city from a bird's eye</h6>
         </div>
       </header>
       <GoogleMapView
@@ -98,19 +98,17 @@ function App() {
         <InputCity
           correctCity={correctCityCounter.length}
           addCorrectCity={addCorrectCity}
+          disabled={gameOverPanel}
         />
       </>
 
       <GameOverPanel
         open={gameOverPanel}
-        handleClose={() => {
-          setGameOverPanel(false);
-        }}
+        handleClose={handlePanelClose}
         correctCityCounter={correctCityCounter}
         currentCity={currentCity.name}
       ></GameOverPanel>
 
-      {renderCitiesGuessed()}
       <footer>
         <div>Developed by Padu 2023</div>
       </footer>

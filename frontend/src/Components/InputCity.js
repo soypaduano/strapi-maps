@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const InputCity = (props) => {
-  const { correctCity, addCorrectCity } = props;
+  const { correctCity, addCorrectCity, disabled } = props;
   const [citySelected, setCitySelected] = useState("");
 
   const variants = {
@@ -49,6 +49,7 @@ const InputCity = (props) => {
           placeholder="Name"
           name="name"
           id="name"
+          disabled={disabled}
           autoComplete={0}
           value={citySelected}
           list="cities"

@@ -26,6 +26,9 @@
     },
     "longitude": {
       "type": "string"
+    },
+    "population": {
+      "type": "integer"
     }
   }
 }

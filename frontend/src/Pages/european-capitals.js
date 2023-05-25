@@ -1,6 +1,3 @@
-const urlCreateCities = "http://localhost:1337/api/cities";
-const urlCreateUserLeaderboard = "http://localhost:1337/api/cities";
-
 const data = [
   {
     name: "Amsterdam",
@@ -399,56 +396,3 @@ const data = [
     population: 804200,
   },
 ];
-
-const createCapitals = () => {
-  data.map((city) => {
-    city.latitude = "" + city.latitude;
-    city.longitude = "" + city.longitude;
-    fetch(urlCreateCities, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ data: city }),
-    })
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      })
-      .then((result) => {
-        console.log("POST request successful:", result);
-      })
-      .catch((error) => {
-        console.error("Error making POST request:", error);
-      });
-    return true;
-  });
-};
-const submitUser = (username, streak) => {
-  const user = { username: username, streak: streak };
-  fetch(urlCreateUserLeaderboard, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ data: user }),
-  })
-    .then((response) => {
-      console.log(response);
-      return response.json();
-    })
-    .then((result) => {
-      console.log("POST request successful:", result);
-    })
-    .catch((error) => {
-      console.error("Error making POST request:", error);
-    });
-  return true;
-};
-
-const createMethods = {
-  createCapitals,
-  submitUser,
-};
-
-export default createMethods;
