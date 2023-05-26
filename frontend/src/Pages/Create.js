@@ -426,7 +426,8 @@ const createCapitals = () => {
 };
 const submitUser = async (username, streak) => {
   const user = { username: username, streak: streak };
-  fetch(urlCreateUserLeaderboard, {
+  let finalResponse;
+  finalResponse = await fetch(urlCreateUserLeaderboard, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -439,11 +440,13 @@ const submitUser = async (username, streak) => {
     })
     .then((result) => {
       console.log("POST request successful:", result);
+      return result;
     })
     .catch((error) => {
       console.error("Error making POST request:", error);
+      return error;
     });
-  return true;
+  return finalResponse;
 };
 
 const createMethods = {

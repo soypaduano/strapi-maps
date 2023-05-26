@@ -8,7 +8,8 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import createMethods from "../Pages/Create";
-import { create } from "@mui/material/styles/createTransitions";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 const CssTextField = styled(TextField)({
   "& label": {
@@ -37,10 +38,22 @@ const CssTextField = styled(TextField)({
   },
 });
 
+const Alert = React.forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const GameOverPanel = (props) => {
-  const { open, handleClose, correctCityCounter, currentCity } = props;
+  const { open, handleClosePanelGameOver, correctCityCounter, currentCity } =
+    props;
   const [playerName, setPlayerName] = React.useState("");
-  const refInputPlayerName = React.useRef();
+  const [openSnackbar, setOpenSnackbar] = React.useState(false);
+
+  const handleCloseSnackBar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenSnackbar(false);
+  };
 
   const style = {
     position: "absolute",
@@ -67,6 +80,12 @@ const GameOverPanel = (props) => {
       playerName,
       correctCityCounter.length
     );
+
+    if (result.data.attributes.username) {
+      setOpenSnackbar(true);
+    } else {
+      alert("Algo ha ido mal");
+    }
   };
 
   return (
@@ -75,7 +94,7 @@ const GameOverPanel = (props) => {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
-        onClose={handleClose}
+        onClose={handleClosePanelGameOver}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
         slotProps={{
@@ -106,7 +125,7 @@ const GameOverPanel = (props) => {
                     label="Enter your name"
                     id="custom-css-outlined-input"
                     sx={{ input: { color: "white" } }}
-                    ref={refInputPlayerName}
+                    autoFocus={true}
                     inputProps={{
                       style: { fontSize: 20, fontWeight: "bold" },
                     }}
@@ -118,9 +137,16 @@ const GameOverPanel = (props) => {
                     onClick={() => submitPlayerName()}
                     variant="contained"
                     id="button-player-submit"
+                    style={{
+                      borderRadius: 25,
+                      backgroundColor: "white",
+                      padding: "18px 36px",
+                      fontSize: "18px",
+                      color: "#282c34",
+                    }}
                   >
                     <Typography id="button-player-submit-typo">
-                      Submit
+                      <b>Submit</b>
                     </Typography>
                   </Button>
                 </div>
@@ -129,6 +155,20 @@ const GameOverPanel = (props) => {
           </Box>
         </Fade>
       </Modal>
+
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={2000}
+        onClose={handleCloseSnackBar}
+      >
+        <Alert
+          onClose={handleCloseSnackBar}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Player submited
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

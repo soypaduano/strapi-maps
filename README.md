@@ -4,12 +4,6 @@ Strapi Maps
 
 To Do List:
 
-Game over panel:
-
-- Style upload player name
-- Submit player name
-- Focus input text player name when is showed
-
 Cities Guessed:
 
 - List all the cities guessed

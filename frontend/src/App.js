@@ -89,7 +89,7 @@ function App() {
 
       <GameOverPanel
         open={gameOverPanel}
-        handleClose={handlePanelClose}
+        handleClosePanelGameOver={handlePanelClose}
         correctCityCounter={correctCityCounter}
         currentCity={currentCity.name}
       ></GameOverPanel>
