@@ -28,10 +28,8 @@ const orderCitiesByPopulation = (cities) => {
     (a, b) => b.attributes.population - a.attributes.population
   );
 
-  console.log(citiesOrderedByPopulation);
   return citiesOrderedByPopulation;
 };
-
 const cityUtils = {
   debugCities,
   orderCitiesByPopulation,

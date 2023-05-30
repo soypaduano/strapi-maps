@@ -29,6 +29,9 @@
     },
     "population": {
       "type": "integer"
+    },
+    "level": {
+      "type": "integer"
     }
   }
 }

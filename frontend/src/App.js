@@ -11,33 +11,28 @@ function App() {
   const [currentCity, setCurrentCity] = useState({});
   const [cities, setCities] = useState(null);
   const [dev, setDev] = useState(true);
+  const [currentLevel, setCurrentLevel] = useState(0);
   const [gameOverPanel, setGameOverPanel] = useState(false);
 
   const addCorrectCity = (city) => {
-    //Is the same
     if (city.toLowerCase() === currentCity.name.toLowerCase()) {
-      const newCities = cities.filter(
-        (item) => item.attributes.name !== currentCity.name
-      );
-      setCities(newCities); //Quitamos la ciudad que acaba de salir
+      //Anadimos la ciudad recien acertada
       setCorrectCityCounter((oldCitiesGuessed) => [
         ...oldCitiesGuessed,
         currentCity.name,
-      ]); //Anadimos la ciudad recien acertada
-      setCurrentCity(
-        cities[Math.floor(Math.random() * cities.length)].attributes
-      ); //Asignamos una nueva ciudad
+      ]);
+
+      //Quitamos la ciudad recien acertada del array de ciudades
+      const newCities = cities.filter(
+        (item) => item.attributes.name !== currentCity.name
+      );
+      setCities(newCities);
+
+      //Anadimos una ciudad aleatoria, asignada por nivel
+      setCurrentCity(getCityByLevel(newCities));
     } else {
       setGameOverPanel(true);
     }
-  };
-
-  const handleCreateCities = () => {
-    createMethods.createCapitals();
-  };
-
-  const handlePanelClose = () => {
-    window.location.reload();
   };
 
   useEffect(() => {
@@ -47,10 +42,7 @@ function App() {
         (result) => {
           setCities(cityUtils.orderCitiesByPopulation(result.data));
           if (result.data.length) {
-            setCurrentCity(
-              result.data[Math.floor(Math.random() * result.data.length)]
-                .attributes
-            );
+            setCurrentCity(getCityByLevel(result.data));
           }
         },
         (error) => {
@@ -59,14 +51,34 @@ function App() {
       );
   }, []);
 
+  const getCityByLevel = (newCities) => {
+    let citiesWithLevel = newCities.filter(
+      (item) => item.attributes.level === currentLevel
+    );
+
+    //while?
+    if (citiesWithLevel.length === 0) {
+      setCurrentLevel((oldLevel) => oldLevel + 1);
+      citiesWithLevel = newCities.filter(
+        (item) => item.attributes.level === currentLevel + 1
+      );
+    }
+
+    return citiesWithLevel[Math.floor(Math.random() * citiesWithLevel.length)]
+      .attributes;
+  };
+
   return (
     <div className="App">
       <div className="nav-urls">
         <a href="https://google.com">Leaderboard</a>
         {dev ? (
-          <button onClick={() => handleCreateCities()}>Subir paises</button>
+          <button onClick={() => createMethods.createCapitals()}>
+            Subir paises
+          </button>
         ) : null}
         {dev ? <span>Current City: {currentCity.name} </span> : null}
+        {dev ? <span>Current Level: {currentLevel} </span> : null}
       </div>
 
       <header className="App-header">
@@ -75,21 +87,20 @@ function App() {
           <h6>Guess the city from a bird's eye</h6>
         </div>
       </header>
+
       <GoogleMapView
         latitude={currentCity.latitude}
         longitude={currentCity.longitude}
       />
-      <>
-        <InputCity
-          correctCity={correctCityCounter.length}
-          addCorrectCity={addCorrectCity}
-          disabled={gameOverPanel}
-        />
-      </>
+      <InputCity
+        correctCity={correctCityCounter.length}
+        addCorrectCity={addCorrectCity}
+        disabled={gameOverPanel}
+      />
 
       <GameOverPanel
         open={gameOverPanel}
-        handleClosePanelGameOver={handlePanelClose}
+        handleClosePanelGameOver={() => window.location.reload()}
         correctCityCounter={correctCityCounter}
         currentCity={currentCity.name}
       ></GameOverPanel>

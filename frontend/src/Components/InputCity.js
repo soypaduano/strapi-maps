@@ -70,7 +70,7 @@ const InputCity = (props) => {
           animate={"show"}
           initial={"hide"}
         >
-          {correctCity}
+          Correct cities: {correctCity}
         </motion.h4>
       </div>
     </div>
