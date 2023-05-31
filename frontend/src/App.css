@@ -36,14 +36,14 @@ h6 {
 }
 
 .map-container {
-  width: 90%;
-  height: 38rem;
+  width: 95%;
+  height: 39rem;
   border-radius: 20px;
   display: inline-block;
 }
 
 .map {
-  height: 35rem;
+  height: 37rem;
   padding: 10px;
   display: block !important;
   border: 1px solid white;
@@ -57,17 +57,24 @@ h6 {
   align-items: center;
 }
 
-.input-user .counter {
+.input-.counter {
   font-size: 25px;
   margin: auto;
 }
 
-.input-user .counter-div {
-  width: 20%;
+.counter-div {
+  position: absolute;
+  z-index: 1;
+  margin: 0 auto;
+  right: 5%;
   padding: 10px;
   background: linear-gradient(to right, #11998e, #38ef7d);
   opacity: 1;
-  border-radius: 10px;
+  border-radius: 0px 0px 10px 10px;
+}
+
+.counter {
+  margin: 0.5px;
 }
 
 .form__group {

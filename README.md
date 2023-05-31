@@ -18,14 +18,14 @@ Devops:
 
 Game Mechanics:
 
-- Add more cities (SouthAmerica) & Second cities Europe
+- Second cities Europe
 - Add notification when post API method is complete (reload when player is submited & loading)
 - Check with UI webpage
 - Mejorar pantalla de carga de google maps (loading con material UI)
-- Replantear el contador de correctas (no me gusta mucho como esta ahi)
 - Mejorar animacion de correcta (Anadir sonido)
 - Anadir una alerta para movil
 - Mejorar copies.
 - Peticion con backend (gestionar error)
 - Anadir lista de autocomplete con todas las ciudades (https://mui.com/material-ui/react-autocomplete/)
 - Active en las ciudades, para poder desactivar algunas.
+- Volver a mejorar la nivelacion del juego

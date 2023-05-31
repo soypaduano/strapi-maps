@@ -5,6 +5,7 @@ import createMethods from "./Pages/Create";
 import cityUtils from "./info-utils/utils";
 import { useState, useEffect } from "react";
 import GameOverPanel from "./Components/GameOver";
+import Header from "./Components/Header";
 
 function App() {
   const [correctCityCounter, setCorrectCityCounter] = useState([]);
@@ -88,22 +89,14 @@ function App() {
         {dev ? <span>Current Level: {currentLevel} </span> : null}
       </div>
 
-      <header className="App-header">
-        <div>
-          <h3>Which city is this? 🌆 </h3>
-          <h6>Guess the city from a bird's eye</h6>
-        </div>
-      </header>
+      <Header />
 
       <GoogleMapView
         latitude={currentCity.latitude}
         longitude={currentCity.longitude}
-      />
-      <InputCity
         correctCity={correctCityCounter.length}
-        addCorrectCity={addCorrectCity}
-        disabled={gameOverPanel}
       />
+      <InputCity addCorrectCity={addCorrectCity} disabled={gameOverPanel} />
 
       <GameOverPanel
         open={gameOverPanel}
