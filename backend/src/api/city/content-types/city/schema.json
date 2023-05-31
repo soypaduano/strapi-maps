@@ -18,9 +18,6 @@
     "country": {
       "type": "string"
     },
-    "points": {
-      "type": "float"
-    },
     "latitude": {
       "type": "string"
     },
@@ -32,6 +29,12 @@
     },
     "level": {
       "type": "integer"
+    },
+    "capital": {
+      "type": "boolean"
+    },
+    "active": {
+      "type": "boolean"
     }
   }
 }

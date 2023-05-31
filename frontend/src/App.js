@@ -14,8 +14,15 @@ function App() {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [gameOverPanel, setGameOverPanel] = useState(false);
 
+  const formatCityName = (city) => {
+    return city
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  };
+
   const addCorrectCity = (city) => {
-    if (city.toLowerCase() === currentCity.name.toLowerCase()) {
+    if (formatCityName(city) === formatCityName(currentCity.name)) {
       //Anadimos la ciudad recien acertada
       setCorrectCityCounter((oldCitiesGuessed) => [
         ...oldCitiesGuessed,

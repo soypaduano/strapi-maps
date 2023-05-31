@@ -1,5 +1,3 @@
-const data = [];
-
 const levels = {
   "5M": 5000000,
   "2M": 2000000,
@@ -8,14 +6,23 @@ const levels = {
   "100K": 100000,
 };
 
-const insertContinent = () => {
+const insertActive = (data) => {
   const levelData = data.map((item) => {
-    return (item.continent = "Europe");
+    item.active = true;
   });
+  return levelData;
 };
 
-const orderArrayByLevels = () => {
+const removeKey = (data) => {
   const levelData = data.map((item) => {
+    delete item["points"];
+    return item;
+  });
+  return levelData;
+};
+
+const orderArrayByLevels = (data) => {
+  let levelData = data.map((item) => {
     if (item.population > levels["5M"]) {
       item.level = 0;
     } else if (
@@ -50,4 +57,11 @@ const orderArrayByLevels = () => {
   return levelData;
 };
 
-//console.log(orderArrayByLevels());
+const getListOfNames = (data) => {
+  const list = data.map((element) => {
+    return element.name;
+  });
+  return list;
+};
+
+export default insertActive;
