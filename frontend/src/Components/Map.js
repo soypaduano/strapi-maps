@@ -1,5 +1,6 @@
 import { GoogleMap, useLoadScript } from "@react-google-maps/api";
 import { motion } from "framer-motion";
+import { LinearProgress } from "@mui/material";
 
 const mapOptions = {
   panControl: false,
@@ -52,7 +53,16 @@ const GoogleMapView = (props) => {
     },
   };
 
-  if (!isLoaded) return <div>Loading</div>;
+  if (!isLoaded)
+    return (
+      <div className="loading-maps">
+        <h2>Loading Google Maps API </h2>
+        <LinearProgress
+          sx={{ width: "80%", margin: "0 auto" }}
+          color="inherit"
+        />
+      </div>
+    );
 
   return (
     <div className="map-container">
