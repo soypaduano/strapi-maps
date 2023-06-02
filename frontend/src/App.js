@@ -90,13 +90,12 @@ function App() {
         {dev ? <span>Current Level: {currentLevel} </span> : null}
       </div>
 
-      <Header />
+      <Header correctCity={correctCityCounter.length} />
 
       <div className="map-container">
         <GoogleMapView
           latitude={currentCity.latitude}
           longitude={currentCity.longitude}
-          correctCity={correctCityCounter.length}
         />
         <GoogleMapViewPin
           latitude={currentCity.latitude}

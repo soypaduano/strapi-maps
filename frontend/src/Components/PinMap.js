@@ -18,8 +18,8 @@ const GoogleMapViewPin = (props) => {
   };
 
   let coord = {
-    lat: parseFloat(props.latitude),
-    lng: parseFloat(props.longitude),
+    lat: 0,
+    lng: 0,
   };
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isLoaded } = useLoadScript({
@@ -41,7 +41,7 @@ const GoogleMapViewPin = (props) => {
     <div className="map-container-pin">
       <GoogleMap
         id="map-pin"
-        zoom={1}
+        zoom={0}
         mapTypeId="hybrid"
         center={coord}
         mapContainerClassName={"map"}
