@@ -6,12 +6,13 @@ import cityUtils from "./info-utils/utils";
 import { useState, useEffect } from "react";
 import GameOverPanel from "./Components/GameOver";
 import Header from "./Components/Header";
+import GoogleMapViewPin from "./Components/PinMap";
 
 function App() {
   const [correctCityCounter, setCorrectCityCounter] = useState([]);
   const [currentCity, setCurrentCity] = useState({});
   const [cities, setCities] = useState(null);
-  const [dev, setDev] = useState(true);
+  const [dev, setDev] = useState(false);
   const [currentLevel, setCurrentLevel] = useState(0);
   const [gameOverPanel, setGameOverPanel] = useState(false);
 
@@ -91,12 +92,17 @@ function App() {
 
       <Header />
 
-      <GoogleMapView
-        latitude={currentCity.latitude}
-        longitude={currentCity.longitude}
-        correctCity={correctCityCounter.length}
-      />
-      <InputCity addCorrectCity={addCorrectCity} disabled={gameOverPanel} />
+      <div className="map-container">
+        <GoogleMapView
+          latitude={currentCity.latitude}
+          longitude={currentCity.longitude}
+          correctCity={correctCityCounter.length}
+        />
+        <GoogleMapViewPin
+          latitude={currentCity.latitude}
+          longitude={currentCity.longitude}
+        />
+      </div>
 
       <GameOverPanel
         open={gameOverPanel}
@@ -104,10 +110,6 @@ function App() {
         correctCityCounter={correctCityCounter}
         currentCity={currentCity.name}
       ></GameOverPanel>
-
-      <footer>
-        <div>Developed by Padu 2023</div>
-      </footer>
     </div>
   );
 }

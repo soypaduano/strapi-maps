@@ -26,6 +26,5 @@ Game Mechanics:
 - Anadir una alerta para movil
 - Mejorar copies.
 - Peticion con backend (gestionar error)
-- Anadir lista de autocomplete con todas las ciudades (https://mui.com/material-ui/react-autocomplete/)
 - Active en las ciudades, para poder desactivar algunas.
 - Volver a mejorar la nivelacion del juego

@@ -3,16 +3,16 @@ import { motion } from "framer-motion";
 import { LinearProgress } from "@mui/material";
 
 const mapOptions = {
-  panControl: false,
+  panControl: true,
   zoomControl: true,
   minZoom: 10,
-  maxZoom: 15,
+  maxZoom: 25,
   mapTypeControl: false,
   scaleControl: false,
   streetViewControl: false,
   overviewMapControl: false,
   rotateControl: false,
-  scrollwheel: false,
+  scrollwheel: true,
   draggable: true,
   disableDefaultUI: true,
   mapTypeId: "satellite",
@@ -65,7 +65,7 @@ const GoogleMapView = (props) => {
     );
 
   return (
-    <div className="map-container">
+    <>
       <div className="counter-div">
         <motion.h4
           whileHover={{ scale: 1.1 }}
@@ -86,7 +86,7 @@ const GoogleMapView = (props) => {
         mapContainerClassName={"map"}
         options={mapOptions}
       ></GoogleMap>
-    </div>
+    </>
   );
 };
 
