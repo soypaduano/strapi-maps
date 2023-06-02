@@ -40,6 +40,7 @@ h6 {
   flex-direction: row;
   align-items: center;
   font-size: calc(10px + 2vmin);
+  width: 100%;
 }
 
 .header-content {
@@ -94,21 +95,15 @@ a[href^="https://maps.google.com/maps"]
   position: absolute;
   padding: 10px;
   right: 0;
-  bottom: 0;
-}
-
-#map-pin {
-  transition: all 0.1s ease-in-out;
-}
-#map-pin:hover {
-  border: 2px solid #38ef7d;
-  transform: scale(1.02);
+  bottom: 5%;
+  cursor: pointer !important;
 }
 
 .map-pin {
   height: 95%;
   padding: 10px;
   display: block !important;
+  cursor: pointer !important;
 }
 
 .input-user {
@@ -120,13 +115,12 @@ a[href^="https://maps.google.com/maps"]
 }
 
 .counter-div {
-  z-index: 1;
-  margin: 0 auto;
+  height: 50%;
+  margin-left: auto;
   right: 5%;
   padding: 10px;
   background: linear-gradient(to right, #11998e, #38ef7d);
   opacity: 1;
-  border-radius: 0px 0px 10px 10px;
 }
 
 .counter {
@@ -204,17 +198,23 @@ a[href^="https://maps.google.com/maps"]
 
 #transition-modal-title,
 #transition-modal-description,
-#button-player-submit-typo {
+Button {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif !important;
+  font-weight: bold !important;
 }
 
-#button-player-submit {
+Button {
   width: 50%;
   justify-content: center;
   margin: 10px auto;
   align-items: center;
+}
+
+.button-guess:disabled {
+  background-color: rgb(255, 145, 145) !important;
+  opacity: 0.9 !important;
 }
 
 footer {

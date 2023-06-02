@@ -19,12 +19,14 @@ Devops:
 Game Mechanics:
 
 - Second cities Europe
-- Add notification when post API method is complete (reload when player is submited & loading)
 - Check with UI webpage
-- Mejorar pantalla de carga de google maps (loading con material UI)
 - Mejorar animacion de correcta (Anadir sonido)
 - Anadir una alerta para movil
 - Mejorar copies.
 - Peticion con backend (gestionar error)
 - Active en las ciudades, para poder desactivar algunas.
 - Volver a mejorar la nivelacion del juego
+- Comparacion de coordenadas para saber si la ciudad es correcta.
+- Pequena animacion de hover cuando entramos en el mapa de adivinar
+- Arreglar el header
+- Mostrar pantalla de distancia con una linea

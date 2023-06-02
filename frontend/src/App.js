@@ -1,7 +1,5 @@
 import "./App.css";
 import GoogleMapView from "./Components/Map";
-import InputCity from "./Components/InputCity";
-import createMethods from "./Pages/Create";
 import cityUtils from "./info-utils/utils";
 import { useState, useEffect } from "react";
 import GameOverPanel from "./Components/GameOver";
@@ -79,17 +77,6 @@ function App() {
 
   return (
     <div className="App">
-      <div className="nav-urls">
-        <a href="https://google.com">Leaderboard</a>
-        {dev ? (
-          <button onClick={() => createMethods.createCapitals()}>
-            Subir paises
-          </button>
-        ) : null}
-        {dev ? <span>Current City: {currentCity.name} </span> : null}
-        {dev ? <span>Current Level: {currentLevel} </span> : null}
-      </div>
-
       <Header correctCity={correctCityCounter.length} />
 
       <div className="map-container">
