@@ -1,10 +1,10 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { Button } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 
 const GoogleMapViewPin = (props) => {
-  const [currentMarker, setCurrentMarker] = React.useState({});
-  const [currentCenter, setCurrentCenter] = React.useState({ lat: 0, lng: 0 });
+  const [currentMarker, setCurrentMarker] = React.useState(null);
+  const [currentCenter, setCurrentCenter] = React.useState(props.center);
 
   const mapOptions = {
     panControl: true,
@@ -32,7 +32,7 @@ const GoogleMapViewPin = (props) => {
   };
 
   const renderMarker = () => {
-    if (currentMarker.lat) {
+    if (currentMarker) {
       return (
         <Marker
           position={{
@@ -45,8 +45,8 @@ const GoogleMapViewPin = (props) => {
   };
 
   const handleGuess = () => {
-    alert(currentMarker.lat);
-    alert(currentMarker.lng);
+    props.addCorrectCity({ lat: currentMarker.lat, lng: currentMarker.lng });
+    setCurrentMarker({});
   };
 
   if (!isLoaded) {
@@ -55,9 +55,11 @@ const GoogleMapViewPin = (props) => {
 
   return (
     <div className="map-container-pin">
+      {console.log(props.zoom)}
       <GoogleMap
         id="map-pin"
-        zoom={0}
+        zoom={props.zoom}
+        initialCenter={currentCenter}
         center={currentCenter}
         mapTypeId="hybrid"
         mapContainerClassName={"map"}
@@ -67,11 +69,12 @@ const GoogleMapViewPin = (props) => {
       >
         {renderMarker()}
       </GoogleMap>
+
       <div>
         <Button
           color="success"
           className="button-guess"
-          disabled={currentMarker.lat ? false : true}
+          disabled={currentMarker ? false : true}
           onClick={() => handleGuess()}
           sx={{ width: "50%", marginTop: "5px" }}
           variant="contained"

@@ -7,7 +7,7 @@ import { TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import createMethods from "../Pages/Create";
+import createMethods from "../../Pages/Create";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 

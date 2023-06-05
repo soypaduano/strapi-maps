@@ -2,8 +2,8 @@ import "./App.css";
 import GoogleMapView from "./Components/Map";
 import cityUtils from "./info-utils/utils";
 import { useState, useEffect } from "react";
-import GameOverPanel from "./Components/GameOver";
-import Header from "./Components/Header";
+import GameOverPanel from "./Components/Panels/GameOver";
+import Header from "./Components/Header/Header";
 import GoogleMapViewPin from "./Components/PinMap";
 
 function App() {
@@ -14,15 +14,13 @@ function App() {
   const [currentLevel, setCurrentLevel] = useState(0);
   const [gameOverPanel, setGameOverPanel] = useState(false);
 
-  const formatCityName = (city) => {
-    return city
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, "");
-  };
+  const addCorrectCity = (coordinatesGuessCity) => {
+    const coordinatesCurrentCity = {
+      lat: currentCity.latitude,
+      lng: currentCity.longitude,
+    };
 
-  const addCorrectCity = (city) => {
-    if (formatCityName(city) === formatCityName(currentCity.name)) {
+    if (cityUtils.calcCrow(coordinatesGuessCity, coordinatesCurrentCity)) {
       //Anadimos la ciudad recien acertada
       setCorrectCityCounter((oldCitiesGuessed) => [
         ...oldCitiesGuessed,
@@ -85,8 +83,9 @@ function App() {
           longitude={currentCity.longitude}
         />
         <GoogleMapViewPin
-          latitude={currentCity.latitude}
-          longitude={currentCity.longitude}
+          addCorrectCity={addCorrectCity}
+          zoom={Math.random(0, 1) * 1}
+          center={{ lat: 0, lng: 0 }}
         />
       </div>
 

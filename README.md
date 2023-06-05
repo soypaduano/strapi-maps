@@ -29,4 +29,5 @@ Game Mechanics:
 - Comparacion de coordenadas para saber si la ciudad es correcta.
 - Pequena animacion de hover cuando entramos en el mapa de adivinar
 - Arreglar el header
+- Arreglar que al recargar, se tiene que volver que poner el zoom a 0.
 - Mostrar pantalla de distancia con una linea

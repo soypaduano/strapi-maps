@@ -1,9 +1,9 @@
-import { GoogleMap, useLoadScript } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { LinearProgress } from "@mui/material";
 
 const mapOptions = {
   panControl: true,
-  zoomControl: true,
+  zoomControl: false,
   minZoom: 10,
   maxZoom: 25,
   mapTypeControl: false,
@@ -27,6 +27,10 @@ const GoogleMapView = (props) => {
     googleMapsApiKey: "AIzaSyDOjjucPuX3-uUDBHkoPmSvtEa7ARLPNOc",
   });
 
+  const renderMarker = () => {
+    return <Marker position={coord} />;
+  };
+
   if (!isLoaded)
     return (
       <div className="loading-maps">
@@ -47,7 +51,9 @@ const GoogleMapView = (props) => {
         center={coord}
         mapContainerClassName={"map"}
         options={mapOptions}
-      ></GoogleMap>
+      >
+        {renderMarker()}
+      </GoogleMap>
     </>
   );
 };
