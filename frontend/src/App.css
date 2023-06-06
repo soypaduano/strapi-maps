@@ -185,15 +185,22 @@ a[href^="https://maps.google.com/maps"]
   box-shadow: none;
 }
 
-.modal-game-over {
+.modal {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #e15554;
   text-align: center;
   border-radius: 10px;
   opacity: 0.8;
   border: 2px solid white;
+}
+
+.modal.game-over {
+  background-color: #e15554;
+}
+
+.modal.correct {
+  background-color: #2e7d32;
 }
 
 #transition-modal-title,

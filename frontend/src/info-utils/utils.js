@@ -1,10 +1,10 @@
-const debugCities = (cities, correctCityCounter) => {
+const debugCities = (cities, correctCityList) => {
   return (
     <div style={{ display: "flex", fontSize: "15px" }}>
       <div>
         <h6>Cities guessed</h6>
         <ol>
-          {correctCityCounter.map((item) => {
+          {correctCityList.map(item => {
             return <li>{item}</li>;
           })}
         </ol>
@@ -13,7 +13,7 @@ const debugCities = (cities, correctCityCounter) => {
         <h6>Cities to be guessed</h6>
         <ol>
           {cities
-            ? cities.map((city) => {
+            ? cities.map(city => {
                 return <li>{city.attributes.name}</li>;
               })
             : null}
@@ -23,7 +23,7 @@ const debugCities = (cities, correctCityCounter) => {
   );
 };
 
-const orderCitiesByPopulation = (cities) => {
+const orderCitiesByPopulation = cities => {
   const citiesOrderedByPopulation = cities.sort(
     (a, b) => b.attributes.population - a.attributes.population
   );
@@ -49,8 +49,7 @@ function calcCrow(p1, p2) {
     Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
   var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   var d = R * c;
-  alert(d);
-  return d;
+  return Math.round(d);
 }
 
 // Converts numeric degrees to radians
@@ -58,7 +57,7 @@ function toRad(Value) {
   return (Value * Math.PI) / 180;
 }
 
-const formatCityName = (city) => {
+const formatCityName = city => {
   return city
     .toLowerCase()
     .normalize("NFD")

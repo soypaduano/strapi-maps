@@ -43,7 +43,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const GameOverPanel = (props) => {
-  const { open, handleClosePanelGameOver, correctCityCounter, currentCity } =
+  const { open, handleClosePanelGameOver, correctCityList, currentCity } =
     props;
   const [playerName, setPlayerName] = React.useState("");
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
@@ -78,7 +78,7 @@ const GameOverPanel = (props) => {
   const submitPlayerName = async () => {
     const result = await createMethods.submitUser(
       playerName,
-      correctCityCounter.length
+      correctCityList.length
     );
 
     if (result.data.attributes.username) {
@@ -104,16 +104,16 @@ const GameOverPanel = (props) => {
         }}
       >
         <Fade in={open}>
-          <Box className="modal-game-over" sx={style}>
+          <Box className="modal game-over" sx={style}>
             <Typography id="transition-modal-title" variant="h5" component="h1">
               <b> Wrong! 😨 </b>
             </Typography>{" "}
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               The correct city was <b> {currentCity} </b> <br></br>
-              You guessed right <b> {correctCityCounter.length} cities </b>
+              You guessed right <b> {correctCityList.length} cities </b>
             </Typography>
             <div>
-              {correctCityCounter.length > -1 ? (
+              {correctCityList.length > -1 ? (
                 <div
                   style={{
                     marginTop: "30px",

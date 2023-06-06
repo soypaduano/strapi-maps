@@ -1,40 +1,54 @@
 import "./App.css";
-import GoogleMapView from "./Components/Map";
+import GoogleMapView from "./Components/Maps/Map";
 import cityUtils from "./info-utils/utils";
 import { useState, useEffect } from "react";
 import GameOverPanel from "./Components/Panels/GameOver";
+import CorrectPanel from "./Components/Panels/Correct";
 import Header from "./Components/Header/Header";
-import GoogleMapViewPin from "./Components/PinMap";
+import GoogleMapViewPin from "./Components/Maps/PinMap";
 
 function App() {
-  const [correctCityCounter, setCorrectCityCounter] = useState([]);
-  const [currentCity, setCurrentCity] = useState({});
+  const [correctCityList, setCorrectCityList] = useState([]);
   const [cities, setCities] = useState(null);
+
+  const [currentCity, setCurrentCity] = useState({});
+  const [currentDistanceBetweenPoints, setCurrentDistanceBetweenPoints] =
+    useState(0);
+
   const [dev, setDev] = useState(false);
   const [currentLevel, setCurrentLevel] = useState(0);
   const [gameOverPanel, setGameOverPanel] = useState(false);
+  const [correctPanel, setCorrectPanel] = useState(false);
 
-  const addCorrectCity = (coordinatesGuessCity) => {
+  const addCorrectCity = coordinatesGuessCity => {
     const coordinatesCurrentCity = {
       lat: currentCity.latitude,
       lng: currentCity.longitude,
     };
 
-    if (cityUtils.calcCrow(coordinatesGuessCity, coordinatesCurrentCity)) {
+    const distance = cityUtils.calcCrow(
+      coordinatesGuessCity,
+      coordinatesCurrentCity
+    );
+    setCurrentDistanceBetweenPoints(old => distance);
+
+    if (currentDistanceBetweenPoints < 1000) {
       //Anadimos la ciudad recien acertada
-      setCorrectCityCounter((oldCitiesGuessed) => [
+      setCorrectCityList(oldCitiesGuessed => [
         ...oldCitiesGuessed,
         currentCity.name,
       ]);
 
       //Quitamos la ciudad recien acertada del array de ciudades
       const newCities = cities.filter(
-        (item) => item.attributes.name !== currentCity.name
+        item => item.attributes.name !== currentCity.name
       );
+
+      //Anadimos las nuevas ciudades
       setCities(newCities);
 
-      //Anadimos una ciudad aleatoria, asignada por nivel
-      setCurrentCity(getCityByLevel(newCities));
+      //Mostramos panel de correcto
+      setCorrectPanel(true);
     } else {
       setGameOverPanel(true);
     }
@@ -42,30 +56,30 @@ function App() {
 
   useEffect(() => {
     fetch(`http://localhost:1337/api/cities`)
-      .then((res) => res.json())
+      .then(res => res.json())
       .then(
-        (result) => {
+        result => {
           setCities(cityUtils.orderCitiesByPopulation(result.data));
           if (result.data.length) {
             setCurrentCity(getCityByLevel(result.data));
           }
         },
-        (error) => {
+        error => {
           alert("errror");
         }
       );
   }, []);
 
-  const getCityByLevel = (newCities) => {
+  const getCityByLevel = newCities => {
     let citiesWithLevel = newCities.filter(
-      (item) => item.attributes.level === currentLevel
+      item => item.attributes.level === currentLevel
     );
 
     //while?
     if (citiesWithLevel.length === 0) {
-      setCurrentLevel((oldLevel) => oldLevel + 1);
+      setCurrentLevel(oldLevel => oldLevel + 1);
       citiesWithLevel = newCities.filter(
-        (item) => item.attributes.level === currentLevel + 1
+        item => item.attributes.level === currentLevel + 1
       );
     }
 
@@ -73,9 +87,14 @@ function App() {
       .attributes;
   };
 
+  const nextCityCorrect = () => {
+    //Anadimos una ciudad aleatoria, asignada por nivel
+    setCurrentCity(getCityByLevel(cities));
+  };
+
   return (
     <div className="App">
-      <Header correctCity={correctCityCounter.length} />
+      <Header correctCity={correctCityList.length} />
 
       <div className="map-container">
         <GoogleMapView
@@ -92,9 +111,14 @@ function App() {
       <GameOverPanel
         open={gameOverPanel}
         handleClosePanelGameOver={() => window.location.reload()}
-        correctCityCounter={correctCityCounter}
-        currentCity={currentCity.name}
-      ></GameOverPanel>
+        correctCityList={correctCityList}
+        currentCity={currentCity.name}></GameOverPanel>
+
+      <CorrectPanel
+        open={correctPanel}
+        setOpen={setCorrectPanel}
+        distance={currentDistanceBetweenPoints}
+      />
     </div>
   );
 }
