@@ -8,13 +8,14 @@ import Typography from "@mui/material/Typography";
 
 const CorrectPanel = props => {
   // prettier-ignore
-  const {open, nextCity, distance} = props;
+  const { open, nextCity, distance } = props;
 
   const style = {
     position: "absolute",
     top: "20%",
     left: "50%",
     transform: "translate(-50%, -50%)",
+    backgroundColor: "transparent",
     width: 400,
     p: 4,
   };
@@ -31,9 +32,12 @@ const CorrectPanel = props => {
         slotProps={{
           backdrop: {
             timeout: 500,
+            backdropOpacity: 0,
+            backgroundColor: 'transparent'
           },
+          style: { backgroundColor: 'transparent' }
         }}>
-        <Fade in={open}>
+        <Fade in={open} >
           <Box className="modal correct" sx={style}>
             <Typography id="transition-modal-title" variant="h5" component="h1">
               <b> You guessed right! 🥳 </b>
@@ -57,7 +61,7 @@ const CorrectPanel = props => {
           </Box>
         </Fade>
       </Modal>
-    </div>
+    </div >
   );
 };
 

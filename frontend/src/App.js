@@ -22,27 +22,16 @@ function App() {
   const [correctPanel, setCorrectPanel] = useState(false);
 
   const addCorrectCity = coordinatesGuessCity => {
-    const coordinatesCurrentCity = {
-      lat: currentCity.latitude,
-      lng: currentCity.longitude,
-    };
 
-    const distance = cityUtils.calcCrow(
-      coordinatesGuessCity,
-      coordinatesCurrentCity
-    );
+    const coordinatesCurrentCity = { lat: currentCity.latitude, lng: currentCity.longitude, };
+    const distance = cityUtils.calcCrow(coordinatesGuessCity, coordinatesCurrentCity);
     setCurrentDistanceBetweenPoints(old => distance);
 
     if (currentDistanceBetweenPoints < 1000) {
       //Anadimos la ciudad recien acertada
-      setCorrectCityList(oldCitiesGuessed => [
-        ...oldCitiesGuessed,
-        currentCity.name,
-      ]);
+      setCorrectCityList(oldCitiesGuessed => [...oldCitiesGuessed, currentCity.name,]);
       //Quitamos la ciudad recien acertada del array de ciudades
-      const newCities = cities.filter(
-        item => item.attributes.name !== currentCity.name
-      );
+      const newCities = cities.filter(item => item.attributes.name !== currentCity.name);
       //Anadimos las nuevas ciudades
       setCities(newCities);
       //Mostramos panel de correcto
@@ -90,6 +79,10 @@ function App() {
     //Anadimos una ciudad aleatoria, asignada por nivel
     setCurrentCity(getCityByLevel(cities));
   };
+
+  const renderDistancePolygonLine = (p1, p2) => {
+
+  }
 
   const onKeyPress = (e) => {
     if (e.keyCode === 32) {

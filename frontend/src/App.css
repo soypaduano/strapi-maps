@@ -219,6 +219,10 @@ a[href^="https://maps.google.com/maps"]
   background-color: #2e7d32;
 }
 
+.MuiBackdrop-root {
+  background-color: rgba(0, 0, 0, 0.3) !important;
+}
+
 #transition-modal-title,
 #transition-modal-description,
 Button {
