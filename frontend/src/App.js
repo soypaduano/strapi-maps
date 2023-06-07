@@ -11,6 +11,7 @@ function App() {
   const [correctCityList, setCorrectCityList] = useState([]);
   const [cities, setCities] = useState(null);
 
+  const [enterPressed, setEnterPressed] = useState(false);
   const [currentCity, setCurrentCity] = useState({});
   const [currentDistanceBetweenPoints, setCurrentDistanceBetweenPoints] =
     useState(0);
@@ -90,8 +91,14 @@ function App() {
     setCurrentCity(getCityByLevel(cities));
   };
 
+  const onKeyPress = (e) => {
+    if (e.keyCode === 32) {
+      setEnterPressed(true);
+    }
+  };
+
   return (
-    <div className="App">
+    <div className="App" tabIndex={0} onKeyDown={e => onKeyPress(e)}>
       <Header correctCity={correctCityList.length} />
 
       <div className="map-container">
@@ -104,6 +111,8 @@ function App() {
             addCorrectCity={addCorrectCity}
             zoom={Math.random(0, 1) * 1}
             center={{ lat: 0, lng: 0 }}
+            enterPressed={enterPressed}
+            setEnterPressed={setEnterPressed}
           />
         ) : null}
       </div>

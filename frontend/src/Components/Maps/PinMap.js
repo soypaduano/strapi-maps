@@ -3,6 +3,9 @@ import { Button } from "@mui/material";
 import React, { useEffect } from "react";
 
 const GoogleMapViewPin = props => {
+
+  const { enterPressed, setEnterPressed } = props;
+
   const [currentMarker, setCurrentMarker] = React.useState(null);
   const [currentCenter, setCurrentCenter] = React.useState(props.center);
 
@@ -48,6 +51,13 @@ const GoogleMapViewPin = props => {
     props.addCorrectCity({ lat: currentMarker.lat, lng: currentMarker.lng });
     setCurrentMarker({});
   };
+
+  useEffect(() => {
+    if (enterPressed && currentMarker) {
+      handleGuess();
+      setEnterPressed(false)
+    }
+  })
 
   if (!isLoaded) {
     return <></>;
