@@ -38,15 +38,12 @@ function App() {
         ...oldCitiesGuessed,
         currentCity.name,
       ]);
-
       //Quitamos la ciudad recien acertada del array de ciudades
       const newCities = cities.filter(
         item => item.attributes.name !== currentCity.name
       );
-
       //Anadimos las nuevas ciudades
       setCities(newCities);
-
       //Mostramos panel de correcto
       setCorrectPanel(true);
     } else {
@@ -87,7 +84,8 @@ function App() {
       .attributes;
   };
 
-  const nextCityCorrect = () => {
+  const nextCity = () => {
+    setCorrectPanel(false);
     //Anadimos una ciudad aleatoria, asignada por nivel
     setCurrentCity(getCityByLevel(cities));
   };
@@ -101,11 +99,13 @@ function App() {
           latitude={currentCity.latitude}
           longitude={currentCity.longitude}
         />
-        <GoogleMapViewPin
-          addCorrectCity={addCorrectCity}
-          zoom={Math.random(0, 1) * 1}
-          center={{ lat: 0, lng: 0 }}
-        />
+        {!correctPanel ? (
+          <GoogleMapViewPin
+            addCorrectCity={addCorrectCity}
+            zoom={Math.random(0, 1) * 1}
+            center={{ lat: 0, lng: 0 }}
+          />
+        ) : null}
       </div>
 
       <GameOverPanel
@@ -116,7 +116,7 @@ function App() {
 
       <CorrectPanel
         open={correctPanel}
-        setOpen={setCorrectPanel}
+        nextCity={nextCity}
         distance={currentDistanceBetweenPoints}
       />
     </div>

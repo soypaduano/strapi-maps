@@ -2,28 +2,21 @@ import * as React from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import GoogleMapDistancePoints from "../Maps/DistanceMap";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
 const CorrectPanel = props => {
   // prettier-ignore
-  const {open, setOpen, distance, p1, p2} = props;
+  const {open, nextCity, distance} = props;
 
   const style = {
     position: "absolute",
-    top: "50%",
+    top: "20%",
     left: "50%",
     transform: "translate(-50%, -50%)",
     width: 400,
     p: 4,
-  };
-
-  const onKeyPress = e => {
-    if (e.keyCode === 13) {
-      alert("next");
-    }
   };
 
   return (
@@ -32,7 +25,7 @@ const CorrectPanel = props => {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={() => nextCity()}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
         slotProps={{
@@ -48,9 +41,8 @@ const CorrectPanel = props => {
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               <b>Distance: {distance} kms </b> <br></br>
             </Typography>
-            <GoogleMapDistancePoints p1={p1} p2={p2} />
             <Button
-              onClick={() => setOpen(false)}
+              onClick={() => nextCity()}
               variant="contained"
               id="button-player-submit"
               style={{

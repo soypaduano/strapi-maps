@@ -2,7 +2,7 @@ import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { Button } from "@mui/material";
 import React, { useEffect } from "react";
 
-const GoogleMapViewPin = (props) => {
+const GoogleMapViewPin = props => {
   const [currentMarker, setCurrentMarker] = React.useState(null);
   const [currentCenter, setCurrentCenter] = React.useState(props.center);
 
@@ -64,9 +64,8 @@ const GoogleMapViewPin = (props) => {
         mapTypeId="hybrid"
         mapContainerClassName={"map"}
         options={mapOptions}
-        onClick={(ev) => handleClickPinMap(ev.latLng.lat(), ev.latLng.lng())}
-        onCenterChanged={(ev) => console.log(ev)}
-      >
+        onClick={ev => handleClickPinMap(ev.latLng.lat(), ev.latLng.lng())}
+        onCenterChanged={ev => console.log(ev)}>
         {renderMarker()}
       </GoogleMap>
 
@@ -77,8 +76,7 @@ const GoogleMapViewPin = (props) => {
           disabled={currentMarker ? false : true}
           onClick={() => handleGuess()}
           sx={{ width: "50%", marginTop: "5px" }}
-          variant="contained"
-        >
+          variant="contained">
           Guess
         </Button>
       </div>

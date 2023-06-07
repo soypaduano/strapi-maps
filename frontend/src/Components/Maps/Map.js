@@ -17,7 +17,7 @@ const mapOptions = {
   mapTypeId: "satellite",
 };
 
-const GoogleMapView = (props) => {
+const GoogleMapView = props => {
   let coord = {
     lat: parseFloat(props.latitude),
     lng: parseFloat(props.longitude),
@@ -50,8 +50,7 @@ const GoogleMapView = (props) => {
         mapTypeId="satellite"
         center={coord}
         mapContainerClassName={"map"}
-        options={mapOptions}
-      >
+        options={mapOptions}>
         {renderMarker()}
       </GoogleMap>
     </>
