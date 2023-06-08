@@ -1,5 +1,6 @@
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Marker, Polyline } from "@react-google-maps/api";
 import { LinearProgress } from "@mui/material";
+import { useState, useEffect } from "react";
 
 const mapOptions = {
   panControl: true,
@@ -18,10 +19,11 @@ const mapOptions = {
 };
 
 const GoogleMapView = props => {
-  let coord = {
-    lat: parseFloat(props.latitude),
-    lng: parseFloat(props.longitude),
-  };
+  const guessCords = { lat: props.guessCityCoords.lat, lng: props.guessCityCoords.lng }
+  let coord = { lat: parseFloat(props.latitude), lng: parseFloat(props.longitude) };
+  const { distance } = props;
+  const [zoom, setZoom] = useState(12)
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: "AIzaSyDOjjucPuX3-uUDBHkoPmSvtEa7ARLPNOc",
@@ -30,6 +32,28 @@ const GoogleMapView = props => {
   const renderMarker = () => {
     return <Marker position={coord} />;
   };
+
+  const renderMarkerGuessCity = () => {
+    return <Marker position={guessCords} />
+  }
+
+  const drawLineBetweenPoints = () => {
+
+    const path = [
+      coord,
+      guessCords
+    ];
+
+    return <Polyline
+      path={path}
+      strokeColor="#0000FF"
+      strokeOpacity={0.3}
+      strokeWeight={1} />
+  }
+
+  useEffect(() => {
+    console.log('recalculate zoom')
+  }, [])
 
   if (!isLoaded)
     return (
@@ -43,15 +67,18 @@ const GoogleMapView = props => {
     );
 
   return (
+
     <>
       <GoogleMap
         id="map"
-        zoom={12}
+        zoom={zoom}
         mapTypeId="satellite"
         center={coord}
         mapContainerClassName={"map"}
         options={mapOptions}>
         {renderMarker()}
+        {renderMarkerGuessCity()}
+        {drawLineBetweenPoints()}
       </GoogleMap>
     </>
   );

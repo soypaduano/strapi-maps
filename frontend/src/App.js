@@ -13,8 +13,9 @@ function App() {
 
   const [enterPressed, setEnterPressed] = useState(false);
   const [currentCity, setCurrentCity] = useState({});
-  const [currentDistanceBetweenPoints, setCurrentDistanceBetweenPoints] =
-    useState(0);
+  const [guessCity, setGuessCity] = useState(0);
+  const [currentDistanceBetweenPoints, setCurrentDistanceBetweenPoints] = useState(0);
+
 
   const [dev, setDev] = useState(false);
   const [currentLevel, setCurrentLevel] = useState(0);
@@ -34,6 +35,8 @@ function App() {
       const newCities = cities.filter(item => item.attributes.name !== currentCity.name);
       //Anadimos las nuevas ciudades
       setCities(newCities);
+      //Anadimos las 2 ciudades:
+      setGuessCity((old) => coordinatesGuessCity)
       //Mostramos panel de correcto
       setCorrectPanel(true);
     } else {
@@ -76,13 +79,10 @@ function App() {
 
   const nextCity = () => {
     setCorrectPanel(false);
+    setGuessCity({});
     //Anadimos una ciudad aleatoria, asignada por nivel
     setCurrentCity(getCityByLevel(cities));
   };
-
-  const renderDistancePolygonLine = (p1, p2) => {
-
-  }
 
   const onKeyPress = (e) => {
     if (e.keyCode === 32) {
@@ -98,6 +98,8 @@ function App() {
         <GoogleMapView
           latitude={currentCity.latitude}
           longitude={currentCity.longitude}
+          guessCityCoords={guessCity}
+          distance={currentDistanceBetweenPoints}
         />
         {!correctPanel ? (
           <GoogleMapViewPin

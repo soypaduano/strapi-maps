@@ -32,10 +32,7 @@ const CorrectPanel = props => {
         slotProps={{
           backdrop: {
             timeout: 500,
-            backdropOpacity: 0,
-            backgroundColor: 'transparent'
-          },
-          style: { backgroundColor: 'transparent' }
+          }
         }}>
         <Fade in={open} >
           <Box className="modal correct" sx={style}>

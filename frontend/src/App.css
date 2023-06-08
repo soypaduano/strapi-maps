@@ -220,7 +220,7 @@ a[href^="https://maps.google.com/maps"]
 }
 
 .MuiBackdrop-root {
-  background-color: rgba(0, 0, 0, 0.3) !important;
+  background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
 #transition-modal-title,
