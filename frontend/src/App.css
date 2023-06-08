@@ -217,6 +217,7 @@ a[href^="https://maps.google.com/maps"]
 
 .modal.correct {
   background-color: #2e7d32;
+  padding: 10px;
 }
 
 .MuiBackdrop-root {

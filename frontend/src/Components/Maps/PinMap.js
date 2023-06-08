@@ -65,7 +65,6 @@ const GoogleMapViewPin = props => {
 
   return (
     <div className="map-container-pin">
-      {console.log(props.zoom)}
       <GoogleMap
         id="map-pin"
         zoom={props.zoom}

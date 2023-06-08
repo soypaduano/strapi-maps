@@ -8,6 +8,9 @@ import Header from "./Components/Header/Header";
 import GoogleMapViewPin from "./Components/Maps/PinMap";
 
 function App() {
+
+  const MINIMUM_DISTANCE_TO_WIN = 30000;
+
   const [correctCityList, setCorrectCityList] = useState([]);
   const [cities, setCities] = useState(null);
 
@@ -28,7 +31,9 @@ function App() {
     const distance = cityUtils.calcCrow(coordinatesGuessCity, coordinatesCurrentCity);
     setCurrentDistanceBetweenPoints(old => distance);
 
-    if (currentDistanceBetweenPoints < 1000) {
+    alert(`${distance} y ${MINIMUM_DISTANCE_TO_WIN}`)
+
+    if (distance < MINIMUM_DISTANCE_TO_WIN) {
       //Anadimos la ciudad recien acertada
       setCorrectCityList(oldCitiesGuessed => [...oldCitiesGuessed, currentCity.name,]);
       //Quitamos la ciudad recien acertada del array de ciudades
@@ -100,6 +105,7 @@ function App() {
           longitude={currentCity.longitude}
           guessCityCoords={guessCity}
           distance={currentDistanceBetweenPoints}
+          correctPanel={correctPanel}
         />
         {!correctPanel ? (
           <GoogleMapViewPin
@@ -118,11 +124,12 @@ function App() {
         correctCityList={correctCityList}
         currentCity={currentCity.name}></GameOverPanel>
 
-      <CorrectPanel
+      {correctPanel ? <CorrectPanel
         open={correctPanel}
         nextCity={nextCity}
         distance={currentDistanceBetweenPoints}
-      />
+        currentCity={currentCity}
+      /> : null}
     </div>
   );
 }

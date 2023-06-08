@@ -42,13 +42,15 @@ Vienna, Austria
 Vilnius, Lithuania
 Warsaw, Poland
 Zagreb, Croatia
-Buenos Aires
-La Paz
-Brasilia
-Santiago
-Bogota
-Quito
-Asuncion
-Lima
-Montevideo
-Caracas
+Buenos Aires, Argentina
+La Paz, Bolivia
+Brasilia, Brasil
+Santiago, Chile
+Bogota, Colombia
+Quito, Ecuador
+Asuncion, Paraguay
+Lima, Peru
+Montevideo, Uruguay
+Caracas, Venezuela
+
+  

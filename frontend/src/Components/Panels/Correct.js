@@ -5,10 +5,11 @@ import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import cityUtils from "../../info-utils/utils";
 
 const CorrectPanel = props => {
   // prettier-ignore
-  const { open, nextCity, distance } = props;
+  const { open, nextCity, distance, currentCity } = props;
 
   const style = {
     position: "absolute",
@@ -38,9 +39,14 @@ const CorrectPanel = props => {
           <Box className="modal correct" sx={style}>
             <Typography id="transition-modal-title" variant="h5" component="h1">
               <b> You guessed right! 🥳 </b>
-            </Typography>{" "}
+            </Typography>
+
+            <Typography id="transition-modal-title" variant="h6" component="h1">
+              The city was  <b> {currentCity.name} {cityUtils.getEmojiCountry(currentCity.country)}  </b>
+            </Typography>
+
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              <b>Distance: {distance} kms </b> <br></br>
+              <b>Distance: {cityUtils.formatDistance(distance)} </b> <br></br>
             </Typography>
             <Button
               onClick={() => nextCity()}
@@ -49,11 +55,13 @@ const CorrectPanel = props => {
               style={{
                 borderRadius: 25,
                 backgroundColor: "white",
-                padding: "18px 36px",
+                padding: "9px 18px",
                 fontSize: "18px",
                 color: "#282c34",
+                width: '30%',
+                margin: '20px'
               }}>
-              Siguiente
+              Next
             </Button>
           </Box>
         </Fade>
