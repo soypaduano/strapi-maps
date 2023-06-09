@@ -31,8 +31,6 @@ function App() {
     const distance = cityUtils.calcCrow(coordinatesGuessCity, coordinatesCurrentCity);
     setCurrentDistanceBetweenPoints(old => distance);
 
-    alert(`${distance} y ${MINIMUM_DISTANCE_TO_WIN}`)
-
     if (distance < MINIMUM_DISTANCE_TO_WIN) {
       //Anadimos la ciudad recien acertada
       setCorrectCityList(oldCitiesGuessed => [...oldCitiesGuessed, currentCity.name,]);

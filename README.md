@@ -26,9 +26,10 @@ Game Mechanics:
 - Peticion con backend (gestionar error)
 - Active en las ciudades, para poder desactivar algunas.
 - Volver a mejorar la nivelacion del juego
-- Comparacion de coordenadas para saber si la ciudad es correcta.
 - Pequena animacion de hover cuando entramos en el mapa de adivinar
 - Arreglar el header
 - Sacar el map options y externalizarlo ya que los 2 lo comparten.
-- Arreglar que al recargar, se tiene que volver que poner el zoom a 0.
 - Mostrar pantalla de distancia con una linea
+= Explicar porque el fallo: estas a mas de 30 kms 
+- Hacer un hover scale cuando nos ponemos en el mapa pequeno. 
+- Mejorar tema de zoom

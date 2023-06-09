@@ -57,12 +57,12 @@ h6 {
   justify-content: center;
   margin: 0 auto;
 }
-a[href^="http://maps.google.com/maps"]
-{
+
+a[href^="http://maps.google.com/maps"] {
   display: none !important;
 }
-a[href^="https://maps.google.com/maps"]
-{
+
+a[href^="https://maps.google.com/maps"] {
   display: none !important;
 }
 
@@ -71,6 +71,7 @@ a[href^="https://maps.google.com/maps"]
 .gm-style-cc {
   display: none;
 }
+
 .gmnoprint div {
   background: none !important;
 }
@@ -130,8 +131,18 @@ a[href^="https://maps.google.com/maps"]
   align-items: center;
 }
 
+.title-div {
+  width: 75%;
+  padding: 10px;
+}
+
+.leaderboard-div {
+  width: 10%;
+}
+
 .counter-div {
-  height: 50%;
+  width: 15%;
+  height: 100%;
   margin-left: auto;
   right: 5%;
   padding: 10px;
@@ -139,8 +150,17 @@ a[href^="https://maps.google.com/maps"]
   opacity: 1;
 }
 
-.counter {
-  margin: 0.5px;
+.counter-div h5,
+h2,
+h3,
+h1 {
+  margin-inline-start: 0;
+  opacity: 1;
+  margin-block-start: 0;
+  transform: none;
+  margin-block-end: 0;
+  margin-inline-end: 0;
+  margin-top: 5px;
 }
 
 .form__group {
@@ -151,6 +171,7 @@ a[href^="https://maps.google.com/maps"]
   flex-direction: row;
   margin-right: 20px;
 }
+
 .form__field {
   font-family: inherit;
   width: 100%;
@@ -163,14 +184,17 @@ a[href^="https://maps.google.com/maps"]
   background: transparent;
   transition: border-color 0.2s;
 }
+
 .form__field::placeholder {
   color: transparent;
 }
-.form__field:placeholder-shown ~ .form__label {
+
+.form__field:placeholder-shown~.form__label {
   font-size: 1.3rem;
   cursor: text;
   top: 20px;
 }
+
 .form__label {
   position: absolute;
   top: 0;
@@ -179,6 +203,7 @@ a[href^="https://maps.google.com/maps"]
   font-size: 1rem;
   color: #9b9b9b;
 }
+
 .form__field:focus {
   padding-bottom: 6px;
   font-weight: 700;
@@ -186,7 +211,8 @@ a[href^="https://maps.google.com/maps"]
   border-image: linear-gradient(to right, #11998e, #38ef7d);
   border-image-slice: 1;
 }
-.form__field:focus ~ .form__label {
+
+.form__field:focus~.form__label {
   position: absolute;
   top: 0;
   display: block;
@@ -195,6 +221,7 @@ a[href^="https://maps.google.com/maps"]
   color: #11998e;
   font-weight: 700;
 }
+
 /* reset input */
 .form__field:required,
 .form__field:invalid {
@@ -218,6 +245,9 @@ a[href^="https://maps.google.com/maps"]
 .modal.correct {
   background-color: #2e7d32;
   padding: 10px;
+  position: absolute;
+  top: 80%;
+  left: 80%;
 }
 
 .MuiBackdrop-root {

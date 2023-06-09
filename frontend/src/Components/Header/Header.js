@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { motion } from "framer-motion";
 
 const Header = (props) => {
@@ -28,13 +29,18 @@ const Header = (props) => {
 
   return (
     <header className="App-header">
-      <div>
+
+      <div className="leaderboard-div">
+        <h6>Leaderboard</h6>
+      </div>
+
+      <div className="title-div">
         <h3>Which city is this? 🌆 </h3>
-        <h6>Guess the city from a bird's eye</h6>
+        <h6>Pin 📍 the city on the map right below</h6>
       </div>
 
       <div className="counter-div">
-        <motion.h4
+        <motion.h5
           whileHover={{ scale: 1.1 }}
           className="counter"
           key={correctCity}
@@ -42,8 +48,9 @@ const Header = (props) => {
           animate={"show"}
           initial={"hide"}
         >
-          Correct cities: {correctCity}
-        </motion.h4>
+          Correct cities:
+          <motion.h3>{correctCity}</motion.h3>
+        </motion.h5>
       </div>
     </header>
   );
