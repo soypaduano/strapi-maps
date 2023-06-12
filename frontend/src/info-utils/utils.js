@@ -135,6 +135,7 @@ const cityUtils = {
   orderCitiesByPopulation,
   calcCrow,
   formatDistance,
+  debugCities,
   getEmojiCountry
 };
 

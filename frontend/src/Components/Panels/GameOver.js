@@ -9,6 +9,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import createMethods from "../../Pages/Create";
 import Snackbar from "@mui/material/Snackbar";
+import cityUtils from "../../info-utils/utils";
 import MuiAlert from "@mui/material/Alert";
 
 const CssTextField = styled(TextField)({
@@ -43,8 +44,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 const GameOverPanel = (props) => {
-  const { open, handleClosePanelGameOver, correctCityList, currentCity } =
-    props;
+  const { open, handleClosePanelGameOver, correctCityList, currentCity, distance } = props;
   const [playerName, setPlayerName] = React.useState("");
   const [openSnackbar, setOpenSnackbar] = React.useState(false);
 
@@ -107,11 +107,15 @@ const GameOverPanel = (props) => {
           <Box className="modal game-over" sx={style}>
             <Typography id="transition-modal-title" variant="h5" component="h1">
               <b> Wrong! 😨 </b>
-            </Typography>{" "}
-            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              The correct city was <b> {currentCity} </b> <br></br>
+            </Typography>
+            <Typography id="transition-modal-title" variant="h6" component="h1">
+              The correct city was <b> {currentCity.name} {cityUtils.getEmojiCountry(currentCity.country)} </b>
+            </Typography>
+            <Typography id="transition-modal-description" sx={{ fontWeigth: '200 !important', fontSize: '12px', mt: '10px' }}>
+              The distance was <u> {cityUtils.formatDistance(distance)} </u> and it should be under <u> 30kms. </u> <br></br>
               You guessed right <b> {correctCityList.length} cities </b>
             </Typography>
+
             <div>
               {correctCityList.length > -1 ? (
                 <div
@@ -136,18 +140,16 @@ const GameOverPanel = (props) => {
                   <Button
                     onClick={() => submitPlayerName()}
                     variant="contained"
-                    id="button-player-submit"
                     style={{
                       borderRadius: 25,
                       backgroundColor: "white",
-                      padding: "18px 36px",
                       fontSize: "18px",
                       color: "#282c34",
-                    }}
-                  >
-                    <Typography id="button-player-submit-typo">
-                      <b>Submit</b>
-                    </Typography>
+                      width: '40%',
+                      margin: '0 auto',
+                      marginTop: '10px'
+                    }}>
+                    Next
                   </Button>
                 </div>
               ) : null}

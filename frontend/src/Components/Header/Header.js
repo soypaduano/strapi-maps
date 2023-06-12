@@ -49,8 +49,9 @@ const Header = (props) => {
           initial={"hide"}
         >
           Correct cities:
-          <motion.h3>{correctCity}</motion.h3>
         </motion.h5>
+        <motion.h3>{correctCity}</motion.h3>
+
       </div>
     </header>
   );

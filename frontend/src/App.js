@@ -105,7 +105,7 @@ function App() {
           distance={currentDistanceBetweenPoints}
           correctPanel={correctPanel}
         />
-        {!correctPanel ? (
+        {(!correctPanel && !gameOverPanel) ? (
           <GoogleMapViewPin
             addCorrectCity={addCorrectCity}
             zoom={Math.random(0, 1) * 1}
@@ -116,11 +116,14 @@ function App() {
         ) : null}
       </div>
 
-      <GameOverPanel
+
+
+      {gameOverPanel ? <GameOverPanel
         open={gameOverPanel}
         handleClosePanelGameOver={() => window.location.reload()}
         correctCityList={correctCityList}
-        currentCity={currentCity.name}></GameOverPanel>
+        distance={currentDistanceBetweenPoints}
+        currentCity={currentCity}></GameOverPanel> : null}
 
       {correctPanel ? <CorrectPanel
         open={correctPanel}

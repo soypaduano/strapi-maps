@@ -21,7 +21,7 @@ const removeKey = (data) => {
   return levelData;
 };
 
-const orderArrayByLevels = (data) => {
+const insertLevel = (data) => {
   let levelData = data.map((item) => {
     if (item.population > levels["5M"]) {
       item.level = 0;
@@ -63,5 +63,9 @@ const getListOfNames = (data) => {
   });
   return list;
 };
+
+const orderArrayByLevel = (data) => {
+
+}
 
 export default insertActive;

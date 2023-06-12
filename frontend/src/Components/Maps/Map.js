@@ -20,7 +20,7 @@ const mapOptions = {
 };
 
 const GoogleMapView = props => {
-  const guessCords = { lat: props.guessCityCoords.lat, lng: props.guessCityCoords.lng }
+  const guessCords = { lat: parseFloat(props.guessCityCoords.lat), lng: parseFloat(props.guessCityCoords.lng) }
   let coord = { lat: parseFloat(props.latitude), lng: parseFloat(props.longitude) };
   const { correctPanel } = props;
 
@@ -37,6 +37,11 @@ const GoogleMapView = props => {
     return <Marker position={guessCords} icon={'http://maps.google.com/mapfiles/ms/icons/green-dot.png'} />
   }
 
+  const calculateZoom = () => {
+    if (!correctPanel) return 12;
+    return 11
+  }
+
   const drawLineBetweenPoints = () => {
 
     const path = [
@@ -44,11 +49,31 @@ const GoogleMapView = props => {
       guessCords
     ];
 
+
+    const options = {
+      strokeColor: '#FFE45E',
+      strokeOpacity: 0.8,
+      strokeWeight: 3,
+      fillColor: '#FFE45E',
+      fillOpacity: 0.35,
+      clickable: false,
+      draggable: false,
+      editable: false,
+      visible: true,
+      radius: 30000,
+      paths: [
+        { lat: 37.772, lng: -122.214 },
+        { lat: 21.291, lng: -157.821 },
+        { lat: -18.142, lng: 178.431 },
+        { lat: -27.467, lng: 153.027 }
+      ],
+      zIndex: 1
+    };
+
+
     return <Polyline
       path={path}
-      strokeColor="#0000FF"
-      strokeOpacity={0.3}
-      strokeWeight={1} />
+      options={options} />
   }
 
   if (!isLoaded)
@@ -67,7 +92,7 @@ const GoogleMapView = props => {
     <>
       <GoogleMap
         id="map"
-        zoom={correctPanel ? 11 : 12}
+        zoom={calculateZoom()}
         mapTypeId="satellite"
         center={coord}
         mapContainerClassName={"map"}

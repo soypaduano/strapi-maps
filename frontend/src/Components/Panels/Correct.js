@@ -51,15 +51,14 @@ const CorrectPanel = props => {
             <Button
               onClick={() => nextCity()}
               variant="contained"
-              id="button-player-submit"
               style={{
                 borderRadius: 25,
                 backgroundColor: "white",
-                padding: "9px 18px",
                 fontSize: "18px",
                 color: "#282c34",
-                width: '30%',
-                margin: '20px'
+                width: '40%',
+                margin: '0 auto',
+                marginTop: '10px'
               }}>
               Next
             </Button>
