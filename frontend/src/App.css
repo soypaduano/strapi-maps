@@ -256,6 +256,10 @@ h1 {
 .modal.game-over {
   opacity: 0.9 !important;
   background-color: #e15554;
+  padding: 10px;
+  position: absolute;
+  top: 80%;
+  left: 80%;
 }
 
 .modal.correct {
