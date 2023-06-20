@@ -18,7 +18,7 @@ const Header = (props) => {
           stiffness: 100,
           restDelta: 0.001,
         },
-      },
+      }
     },
     hide: {
       y: -20,
@@ -35,8 +35,7 @@ const Header = (props) => {
       </div>
 
       <div className="title-div">
-        <h3>Which city is this? 🌆 </h3>
-        <h6>Pin 📍 the city on the map right below</h6>
+        <h3> Pin 📍 the city on the map right below 🌆</h3>
       </div>
 
       <div className="counter-div">
@@ -48,9 +47,8 @@ const Header = (props) => {
           animate={"show"}
           initial={"hide"}
         >
-          Correct cities:
+          Correct cities: {correctCity}
         </motion.h5>
-        <motion.h3>{correctCity}</motion.h3>
 
       </div>
     </header>

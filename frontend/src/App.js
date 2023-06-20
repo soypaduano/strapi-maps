@@ -6,6 +6,7 @@ import GameOverPanel from "./Components/Panels/GameOver";
 import CorrectPanel from "./Components/Panels/Correct";
 import Header from "./Components/Header/Header";
 import GoogleMapViewPin from "./Components/Maps/PinMap";
+import correct from "./Sounds/correct.mp3";
 
 function App() {
 
@@ -25,6 +26,8 @@ function App() {
   const [gameOverPanel, setGameOverPanel] = useState(false);
   const [correctPanel, setCorrectPanel] = useState(false);
 
+  const audio = new Audio(correct);
+
   const addCorrectCity = coordinatesGuessCity => {
 
     const coordinatesCurrentCity = { lat: currentCity.latitude, lng: currentCity.longitude, };
@@ -32,6 +35,7 @@ function App() {
     setCurrentDistanceBetweenPoints(old => distance);
 
     if (distance < MINIMUM_DISTANCE_TO_WIN) {
+      audio.play();
       //Anadimos la ciudad recien acertada
       setCorrectCityList(oldCitiesGuessed => [...oldCitiesGuessed, currentCity.name,]);
       //Quitamos la ciudad recien acertada del array de ciudades
