@@ -10,6 +10,10 @@ for example London, Paris, Moscow, etc. It has capital cities and not capital ci
 
 # tech-stack
 The project is developed with Strapi for the backend and React.js for the frontend.
+
+# database
+Database is allocated on Strapi, where you can access on http://localhost:1337/admin when the backend
+is launched.
 # launch the project
 It has two folders: backend & frontend. To start both of them is as simple as:
 
